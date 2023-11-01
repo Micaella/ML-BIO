@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import re
 import pickle
+import os
 
 def preditor_temp(modelo_, bootstrap_, threads_, nodes_, slowdown_factor=3.3):#usando o tempo como medida
     mat = pd.DataFrame({'Bootstrap' : bootstrap_, 'Thread' : threads_, 'NNodes' : 20}, index=[0])
@@ -20,13 +21,14 @@ def preditor_temp(modelo_, bootstrap_, threads_, nodes_, slowdown_factor=3.3):#u
         mat.drop(mat.loc[mat['Bootstrap'] == bootstrap_].index, inplace=True)
     return i
 
-arq_entrada = '/mnt/c/Users/miica/wsl/MLBIO/ML-BIO/base-de-dados/modelo_treinado_resultados_aminoacido.csv.pickle'
+path_atual = os.path.dirname(os.path.realpath(__file__))
+arq_entrada = path_atual+'/base-de-dados/modelo_treinado_resultados_aminoacido.csv.pickle'
 
 with open(arq_entrada, 'rb') as handle:
     modelo = pickle.load(handle)
 
 #Buscando o valor de bootstrap
-with open('/mnt/c/Users/miica/wsl/MLBIO/ML-BIO/RAxML_v_008_002_012_executar.sh', 'r') as f:
+with open(path_atual+'/RAxML_v_008_002_012_executar.sh', 'r') as f:
     conteudo = f.read()
 valor = re.search(r'RAXML_BOOTSTRAP=(\w+)', conteudo)
 
@@ -36,3 +38,11 @@ else:
     print("Valor não encontrado.")
 
 nodes = preditor_temp(modelo, bootstrap, 24, 1)
+
+# Abrir o arquivo em modo de leitura e substituir o numero de nos (nodes)
+with open(path_atual+'/RAxML_v_008_002_012_pre.script', 'r+') as fd:
+    txt = fd.read()
+    txt = re.sub(r'nodes=\w+', "nodes=" + str(nodes), txt)
+    txt = re.sub(r'ntasks=\w+', "ntasks=" + str(nodes), txt) # Como está sendo usado 1 processo MPI, ntasks fica igual ao núemro de nos
+    fd.seek(0)
+    fd.write(txt)
