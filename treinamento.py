@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import pickle
+import os
 from sklearn.ensemble import ExtraTreesRegressor
 
 def tratar_dados(resultados_, entradas_, threads_, bootstrap_):
@@ -57,7 +58,8 @@ def modelo_treinamento(dados_, val_saida):
 
     return modelo
 
-arq_entrada = '/ML-BIO/base-de-dados/resultados_aminoacido.csv'
+path_atual = os.path.dirname(os.path.realpath(__file__))
+arq_entrada = path_atual+'/base-de-dados/resultados_aminoacido.csv'
 resultados = pd.read_csv(arq_entrada, sep=',')
 threads = ['24th-']
 entradas = ['aminoacido']
@@ -66,5 +68,5 @@ variavel_saida = ['Elapsed'] #'MaxRSS'
 
 dados = tratar_dados(resultados, entradas, threads, bootstrap)
 modelo = modelo_treinamento(dados, variavel_saida)
-with open('/ML-BIO/base-de-dados/modelo_treinado_'+arq_entrada[arq_entrada.index('resultados'):]+'.pickle', 'wb') as f:
+with open(path_atual+'/base-de-dados/modelo_treinado_'+arq_entrada[arq_entrada.index('resultados'):]+'.pickle', 'wb') as f:
     pickle.dump(modelo, f, pickle.HIGHEST_PROTOCOL)
