@@ -38,4 +38,4 @@ O arquivo `preditor.py` é utilizado para predizer a quantidade ideal de nós co
 python3 preditor.py
 ```
 
-Após a execução do "preditor.py", o arquivo "RAxML_v_008_002_012_pre.script" será atualizado com o valor inferido de nós. Dessa forma, ele estará pronto para ser enviado ao metaescalonador, que neste projeto é o metaescalonador do BioinfoPortal.
+Após a execução do `preditor.py`, o arquivo `RAxML_v_008_002_012_pre.script` será atualizado com o valor inferido de nós. Dessa forma, ele estará pronto para ser enviado ao metaescalonador, que neste projeto é o metaescalonador do BioinfoPortal.
