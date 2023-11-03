@@ -1,15 +1,11 @@
 # ML-BIO
 
-A ML-BIO é uma ferramenta baseada em técnicas de aprendizado de máquina, projetada para melhorar o desempenho das aplicações hospedadas no [BioinfoPortal](https://bioinfo.lncc.br/). O BioinfoPortal é fruto da colaboração entre os pesquisadores do LABINFO, CENAPAD-RJ e SINAPAD, e visa facilitar o acesso aos recursos computacionais do supercomputador [Santos Dumont](https://sdumont.lncc.br/) (SDumont).
+A ML-BIO é uma ferramenta que utiliza técnicas de aprendizado de máquina para otimizar o desempenho de aplicações no [BioinfoPortal](https://bioinfo.lncc.br/). Este portal é uma iniciativa colaborativa entre LABINFO, CENAPAD-RJ e SINAPAD, que facilita o acesso a recursos de computação de alto desempenho disponíveis no supercomputador [Santos Dumont](https://sdumont.lncc.br/) (SDumont).
 
-A ferramenta ML-BIO, foi desenvolvida para inferir uma combinação de parâmetros que resultam em um bom desempenho das aplicações do BioinfoPortal. Este projeto foi testado e aprimorado tendo a aplicação RAxML como estudo de caso. O propósito da ML-Bio é aprimorar o desempenho do BioinfoPortal, ajustando as configurações de forma personalizadas para atender às exigências específicas de cada aplicação hospedada no portal.
+## Objetivo da Ferramenta
+A ML-Bio é especialmente projetada para determinar a configuração idela de parâmetros para aplicações hospedadas no BioinfoPortal. Utilizando a aplicação RAxML como caso de estudo, esta ferramenta busca ajustar as configurações de forma personalizada, visando melhorar o desempenho e a eficiência do BioinfoPortal e do SDumont.
 
-Com a integração completa da ferramenta e as devidas adaptações em todas as aplicações do portal, também contribuímos significativamente para o desempenho tanto do BioinfoPortal quanto do SDumont. A ML-BIO utiliza o modelo preditivo de regressão supervisionado, baseado no algoritmo Extra Trees Regressor, que foi treinado com um conjunto de dados históricos.
-
-Para a concretização desta ferramenta, foi necessário obter uma base de dados robusta, incorporando informações sobre as execuções anteriores da aplicação RAxML. Estes dados foram essenciais para o treinamento eficaz do modelo preditivo, garantindo assim a capacidade do ML-BIO em determinar de maneira precisa a quantidade ideal de nós necessária para cada execução.
-
-## 🚀 Começando
-### 📋 Pré-requisitos
+## Pré-requisitos
 
 * Python 3.8.10 
 * Bibliotecas: pandas, numpy e scikit-learn.
@@ -18,24 +14,32 @@ pip install pandas numpy scikit-learn
 ```
 * Base de dados (disponível no diretório "base-de-dados" desse repositório)
 
-### 📋 Modo de utilização
+## Modelo Preditivo
+A ferramenta emprega um modelo de regressão supervisionado, implementado pelo algoritmo Extra Trees Regressor. Este modelo é treinado com dados históricos de execuções anteriores, permitindo a ML-BIO prever a quantidade ideal de nós necessários para cada execução.
 
-#### Pré-processamento de dados e Treinamento do Modelo
+## Componentes da ML-BIO
+A ML-BIO consiste em duas etapas, ambos desenvolvidos em Python:
 
-O arquivo `treinamento.py` é responsável pelo pré-processamento da base de dados e pelo treinamento do modelo. Este processo inclui a limpeza dos dados, conversão de tipos, divisão de colunas, entre outras operações permitidas para preparar os dados para o treinamento.
+1. **Módulo de Treinamento (`treinamento.py`):**
+   - Realiza o pré-processamento dos dados.
+   - Executa o treinamento do modelo ExtraTreesRegressor.
+   - Salva o modelo treinado para uso futuro.
+   - Para iniciar o treinamento, execute no terminal:
+     ```bash
+     python3 treinamento.py
+     ```
+Esse módulo pode ser executado apenas uma vez, sem necessidade de retreinamento. Caso já possua o modelo treinado não há nessecidade do uso desse módulo.
 
-O modelo é treinado utilizando o algoritmo ExtraTreesRegressor. Após o treinamento, o modelo é salvo em um arquivo para que possa ser utilizado posteriormente, sem a necessidade de retreinamento.
+2. **Módulo Preditor (`preditor.py`):**
+   - Realiza previsões da quantidade de nós ideal.
+   - Atualiza o script "RAxML_v_008_002_012_pre.script" com os valores preditos.
+   - Prepara o script para submissão ao metaescalonador do BioinfoPortal.
+   - Para executar a previsão, use o comando:
+     ```bash
+     python3 preditor.py
+     ```
 
-Para executá-lo via linha de comando:
-```
-python3 treinamento.py
-```
-
-#### Inferir o número de nós
-O arquivo `preditor.py` é utilizado para predizer a quantidade ideal de nós com base nos dados de treinamento. Para executá-lo via linha de comando:
-
-```
-python3 preditor.py
-```
-
-Após a execução do `preditor.py`, o arquivo `RAxML_v_008_002_012_pre.script` será atualizado com o valor inferido de nós. Dessa forma, ele estará pronto para ser enviado ao metaescalonador, que neste projeto é o metaescalonador do BioinfoPortal.
+## Estrutura de Diretórios e Arquivos
+- `base-de-dados/`: Contém amostras de arquivos de saída e de entrada usados pela ferramenta.
+- `resultados_aminoacido.csv`: Exemplo de base de dados utilizada para treinar o modelo.
+- `modelo_treinamento_resultados_aminoacido.csv.pickle`: O modelo treinado, pronto para uso nas previsões.
