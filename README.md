@@ -12,7 +12,7 @@ A ML-Bio é especialmente projetada para determinar a configuração idela de pa
 ```
 pip install pandas numpy scikit-learn
 ```
-* Base de dados (disponível no diretório "base-de-dados" desse repositório)
+* Base de dados (disponível no diretório `base-de-dados` desse repositório)
 
 ## Modelo Preditivo
 A ferramenta emprega um modelo de regressão supervisionado, implementado pelo algoritmo Extra Trees Regressor. Este modelo é treinado com dados históricos de execuções anteriores, permitindo a ML-BIO prever a quantidade ideal de nós necessários para cada execução.
@@ -32,7 +32,7 @@ Esse módulo pode ser executado apenas uma vez, sem necessidade de retreinamento
 
 2. **Módulo Preditor (`preditor.py`):**
    - Realiza previsões da quantidade de nós ideal.
-   - Atualiza o script "RAxML_v_008_002_012_pre.script" com os valores preditos.
+   - Atualiza o script `RAxML_v_008_002_012_pre.script` com os valores preditos.
    - Prepara o script para submissão ao metaescalonador do BioinfoPortal.
    - Para executar a previsão, use o comando:
      ```bash
