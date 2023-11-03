@@ -2,11 +2,11 @@
 
 A ML-BIO é uma ferramenta baseada em técnicas de aprendizado de máquina, projetada para melhorar o desempenho das aplicações hospedadas no [BioinfoPortal](https://bioinfo.lncc.br/). O BioinfoPortal é fruto da colaboração entre os pesquisadores do LABINFO, CENAPAD-RJ e SINAPAD, e visa facilitar o acesso aos recursos computacionais do supercomputador [Santos Dumont](https://sdumont.lncc.br/) (SDumont).
 
-A ferramenta ML-Bio, foi desenvolvida para inferir uma combinação de parâmetros que resultam em um bom desempenho das aplicações do BioinfoPortal. Este projeto foi testado e aprimorado tendo a aplicação RAxML como estudo de caso. O propósito da ML-Bio é aprimorar o desempenho do BioinfoPortal, ajustando as configurações de forma personalizadas para atender às exigências específicas de cada aplicação hospedada no portal.
+A ferramenta ML-BIO, foi desenvolvida para inferir uma combinação de parâmetros que resultam em um bom desempenho das aplicações do BioinfoPortal. Este projeto foi testado e aprimorado tendo a aplicação RAxML como estudo de caso. O propósito da ML-Bio é aprimorar o desempenho do BioinfoPortal, ajustando as configurações de forma personalizadas para atender às exigências específicas de cada aplicação hospedada no portal.
 
 Com a integração completa da ferramenta e as devidas adaptações em todas as aplicações do portal, também contribuímos significativamente para o desempenho tanto do BioinfoPortal quanto do SDumont. A ML-BIO utiliza o modelo preditivo de regressão supervisionado, baseado no algoritmo Extra Trees Regressor, que foi treinado com um conjunto de dados históricos.
 
-Para a concretização desta ferramenta, foi necessário obter uma base de dados robusta, incorporando informações sobre as execuções anteriores da aplicação RAxML. Estes dados foram essenciais para o treinamento eficaz do modelo preditivo, garantindo assim a capacidade do ML-Bio em determinar de maneira precisa a quantidade ideal de nós necessária para cada execução.
+Para a concretização desta ferramenta, foi necessário obter uma base de dados robusta, incorporando informações sobre as execuções anteriores da aplicação RAxML. Estes dados foram essenciais para o treinamento eficaz do modelo preditivo, garantindo assim a capacidade do ML-BIO em determinar de maneira precisa a quantidade ideal de nós necessária para cada execução.
 
 ## 🚀 Começando
 ### 📋 Pré-requisitos
