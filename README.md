@@ -43,3 +43,30 @@ Esse módulo pode ser executado apenas uma vez, sem necessidade de retreinamento
 - `base-de-dados/`: Contém amostras de arquivos de saída e de entrada usados pela ferramenta.
 - `resultados_aminoacido.csv`: Exemplo de base de dados utilizada para treinar o modelo.
 - `modelo_treinamento_resultados_aminoacido.csv.pickle`: O modelo treinado, pronto para uso nas previsões.
+
+
+## Cite
+Se você considerar a Ferramenta ML-BIO ou a base de dados úteis para sua pesquisa, recomendamos citar os seguintes artigos em seus trabalhos:
+
+```
+@inproceedings{wscad,
+ author = {Micaella Coelho and Guilherme Freire and Kary Ocaña and Carla Osthoff and Marcelo Galheigo and André Carneiro and Francieli Boito and Philippe Navaux and Douglas Cardoso},
+ title = {Desenvolvimento de um Framework de Aprendizado de Máquina no Apoio a Gateways Científicos Verdes, Inteligentes e Eficientes: BioinfoPortal como Caso de Estudo Brasileiro},
+ booktitle = {Anais do XXIII Simpósio em Sistemas Computacionais de Alto Desempenho},
+ location = {Florianópolis},
+ year = {2022},
+ pages = {205--216},
+ publisher = {SBC},
+ address = {Porto Alegre, RS, Brasil},
+ doi = {10.5753/wscad.2022.226377},
+ url = {https://sol.sbc.org.br/index.php/wscad/article/view/21945}
+}
+
+@inproceedings{coelho2022development,
+  title={Development of a Machine Learning Framework to Support Efficient Scientific Gateways},
+  author={Coelho, M. and Freire, G. and Ocaña, K. and Osthoff, C. and Galheigo, M. and Carneiro, A.R. and Boito, F. and Navaux, P. and Cardoso, D.O.},
+  booktitle={Conferência Latino-Americana de Computação de Alto Desempenho (BioCARLA)},
+  address={Porto Alegre, Brasil},
+  year={2022}
+}
+```
