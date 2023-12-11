@@ -3,6 +3,7 @@ import numpy as np
 import re
 import pickle
 import os
+import sys
 
 def preditor_temp(modelo_, bootstrap_, threads_, nodes_, slowdown_factor=3.3):#usando o tempo como medida
     mat = pd.DataFrame({'Bootstrap' : bootstrap_, 'Thread' : threads_, 'NNodes' : 20}, index=[0])
@@ -33,9 +34,14 @@ with open(path_atual+'/RAxML_v_008_002_012_executar.sh', 'r') as f:
 valor = re.search(r'RAXML_BOOTSTRAP=(\w+)', conteudo)
 
 if valor:
-    bootstrap = float(valor.group(1))
+    try:
+        bootstrap = float(valor.group(1))
+    except ValueError:
+        print("Erro: o valor encontrado não é numérico.")
+        sys.exit(1)  # Encerra a execução com um código de erro
 else:
     print("Valor não encontrado.")
+    sys.exit(1) # Encerra a execução com um código de erro
 
 nodes = preditor_temp(modelo, bootstrap, 24, 1)
 
